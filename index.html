@@ -387,17 +387,25 @@
                         </div>
 
                         <div class="code-inputs">
-                            <input class="input" type="number" id="digit_1" name="digit_1" data-next="digit_2" />
+                            <input class="input" type="number" id="digit_1" name="digit_1" data-next="digit_2"
+                                onchange="checkCodeValue(1)" onvolumechange="checkCodeValue(1)"
+                                oninput="checkCodeValue(1)" onforminput="checkCodeValue(1)" />
 
                             <input class="input" type="number" id="digit_2" name="digit_2" data-next="digit_3"
-                                data-previous="digit_1" />
+                                data-previous="digit_1" onchange="checkCodeValue(2)" onvolumechange="checkCodeValue(2)"
+                                oninput="checkCodeValue(2)" onforminput="checkCodeValue(2)" />
+
                             <input class="input" type="number" id="digit_3" name="digit_3" data-next="digit_4"
-                                data-previous="digit_2" />
+                                data-previous="digit_2" onchange="checkCodeValue(3)" onvolumechange="checkCodeValue(3)"
+                                oninput="checkCodeValue(3)" onforminput="checkCodeValue(3)" />
 
                             <input class="input" type="number" id="digit_4" name="digit_4" data-next="digit_5"
-                                data-previous="digit_3" />
+                                data-previous="digit_3" onchange="checkCodeValue(4)" onvolumechange="checkCodeValue(4)"
+                                oninput="checkCodeValue(4)" onforminput="checkCodeValue(4)" />
+
                             <input class="input" type="number" id="digit_5" name="digit_5" data-next="digit_6"
-                                data-previous="digit_4" />
+                                data-previous="digit_4" onchange="checkCodeValue(5)" onvolumechange="checkCodeValue(5)"
+                                oninput="checkCodeValue(5)" onforminput="checkCodeValue(5)" />
                         </div>
 
                         <div class="arrow-decrease">
@@ -419,6 +427,12 @@
                             function decrease_code(index) {
                                 let old_value = Number(document.getElementById(`digit_${index}`).value);
                                 document.getElementById(`digit_${index}`).value = old_value - 1;
+                                if (document.getElementById(`digit_${index}`).value <= 0) document.getElementById(`digit_${index}`).value = 0;
+                            }
+
+                            function checkCodeValue(index) {
+                                if (document.getElementById(`digit_${index}`).value.length >= 1) document.getElementById(`digit_${index}`).value = document.getElementById(`digit_${index}`).value.at(1);
+                                if (document.getElementById(`digit_${index}`).value >= 9) document.getElementById(`digit_${index}`).value = 9;
                                 if (document.getElementById(`digit_${index}`).value <= 0) document.getElementById(`digit_${index}`).value = 0;
                             }
 
