@@ -342,7 +342,7 @@
             scale: 0.5;
         }
 
-        .subscribe-form input[type=submit] {
+        .subscribe-form #check-btn {
             font-size: 2em;
             width: 425px;
             height: 110px;
@@ -439,10 +439,45 @@
                         </script>
 
                         <div class="subscribe-form">
-                            <input name="submit" type="submit" value="Check" />
+                            <p id="check-btn" value="Check" onclick="checkCodeAnswer()">Check</p>
                         </div>
 
-                        
+                        <script>
+                            function generateRandomNumber() {
+                                localStorage.setItem('currentCode', 12345);
+                                currentCode = localStorage.getItem('currentCode');
+                            }
+                            generateRandomNumber()
+                            console.log(currentCode);
+
+                            function checkCodeAnswer() {
+                                let digit_1 = document.getElementById(`digit_1`).value;
+                                let digit_2 = document.getElementById(`digit_2`).value;
+                                let digit_3 = document.getElementById(`digit_3`).value;
+                                let digit_4 = document.getElementById(`digit_4`).value;
+                                let digit_5 = document.getElementById(`digit_5`).value;
+
+                                let finalAnswer = digit_1 + digit_2 + digit_3 + digit_4 + digit_5;
+                                console.log(finalAnswer)
+                                console.log(typeof finalAnswer)
+
+                                let correctAnswer = Number(localStorage.getItem('currentCode')) == Number(finalAnswer);
+                                if (correctAnswer) {
+                                    win();
+                                } else {
+                                    loss();
+                                }
+                            }
+
+                            function win() {
+                                console.log("WIN");
+                            }
+
+                            function loss() {
+                                console.log("LOSS");
+                            }
+                        </script>
+
                     </form>
 
                 </div>
