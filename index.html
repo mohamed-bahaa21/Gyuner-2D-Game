@@ -277,7 +277,7 @@
             height: 30px;
             background-color: #19220a;
             border: 1px solid #3c7900;
-            color: white;
+            color: #c9d9ae;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -296,8 +296,13 @@
 
         <div class="wide-input">
             <span>Your Score</span>
-            <span>24240</span>
+            <span id="score">24240</span>
         </div>
+        <script>
+            let score = document.getElementById("score");
+            score.innerHTML = 0;
+
+        </script>
 
 
         <div>
@@ -346,15 +351,20 @@
             background-position: center;
             background-size: cover;
             scale: 0.5;
-        }
-
-        .subscribe-form #check-btn {
             font-size: 2em;
             width: 425px;
             height: 110px;
             color: #E1EBCA;
             background-color: transparent;
             border: 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subscribe-form #check-btn {
+            display: inline-block;
         }
     </style>
     <div class="container">
@@ -532,9 +542,9 @@
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-color: transparent;
-                    align-items: center;
                     overflow: auto;
                     padding-left: 4em;
+                    padding-top: 4em;
                     display: flex;
                     background-position: center;
                     background-position-x: 7px;
@@ -606,6 +616,14 @@
                         but wrongly placed.
                         Two Numbers are Correct
                         but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
                     </p>
                 </div>
             </div>
@@ -621,6 +639,14 @@
 
                 <div class="four-words-width-parag">
                     <p style="text-align: left;">
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
                         Two Numbers are Correct
                         but wrongly placed.
                         Two Numbers are Correct
