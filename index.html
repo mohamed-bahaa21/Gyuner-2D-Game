@@ -431,7 +431,7 @@
                             }
 
                             function checkCodeValue(index) {
-                                if (document.getElementById(`digit_${index}`).value.length >= 1) document.getElementById(`digit_${index}`).value = document.getElementById(`digit_${index}`).value.at(1);
+                                if (document.getElementById(`digit_${index}`).value.length > 1) document.getElementById(`digit_${index}`).value = document.getElementById(`digit_${index}`).value.at(1);
                                 if (document.getElementById(`digit_${index}`).value >= 9) document.getElementById(`digit_${index}`).value = 9;
                                 if (document.getElementById(`digit_${index}`).value <= 0) document.getElementById(`digit_${index}`).value = 0;
                             }
@@ -441,6 +441,8 @@
                         <div class="subscribe-form">
                             <input name="submit" type="submit" value="Check" />
                         </div>
+
+                        
                     </form>
 
                 </div>
