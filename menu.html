@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manhajiaat | منهجيات</title>
+    <title>Gyuner Zeki | 2D Game</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 
         @media only screen and (max-width: 500px) {
             html {
@@ -21,32 +24,34 @@
         }
 
         html {
-            width: 375px;
-            background-color: #20191a;
+            width: 414px;
+            background-color: #090B06;
             margin: 0 auto;
             overflow: hidden;
+            font-family: 'Bangers', serif;
+            letter-spacing: 0.1em;
         }
 
         body {
-            background: linear-gradient(-145deg, #49383b -5%, #2F2224 85%);
+            background: linear-gradient(-145deg, #1D3F08 -5%, #0B1508 85%);
             /* background: url('/assets/banner04.png'); */
             width: auto;
             height: 100vh;
             margin: 0 auto;
-            font-family: 'Roboto Slab', serif;
+            font-family: 'Bangers', serif;
         }
 
         .socials {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            background: linear-gradient(-45deg, #C69D6A, #1f1a1b 0%);
+            /* background: linear-gradient(-45deg, #C69D6A, #1f1a1b 0%); */
             list-style-type: none;
         }
 
         .socials a {
             font-size: 2em;
-            color: #ceab80;
+            color: #E1EBCA;
             /* background: linear-gradient(-45deg, #3B2528, #272027 10%); */
             width: 100%;
             text-decoration: none;
@@ -55,9 +60,7 @@
             transition: all 0.1s ease-in-out;
         }
 
-        .socials a span i {
-            font-weight: 400 !important;
-        }
+        .socials a span i {}
 
         .socials a span {
             transition: all 0.1s ease-in-out;
@@ -79,25 +82,526 @@
             top: -0.1.5em;
             background: transparent;
         }
+
+        /* ========================================= CODE ========================================= */
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+        :root {
+            --main-color: #317308;
+        }
+
+        .digit-group .input {
+            width: calc(130px / 3);
+            height: calc(169px / 3);
+            background-color: transparent;
+            background-image: url(assets/code-num-bg.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: 0;
+            line-height: 50px;
+            text-align: center;
+            font-size: 24px;
+            font-family: "Bangers", serif;
+            color: white;
+            margin: 0 2px;
+        }
+
+        .digit-group .splitter {
+            padding: 0 5px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .prompt {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: white;
+        }
+
+
+        .hide {
+            display: none;
+        }
+
+        .attribution {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .attribution a {
+            color: hsl(228, 45%, 44%);
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Bangers', serif;
+            /* overflow-x: hidden; */
+        }
+
+        body {
+            font-family: "Bangers", serif;
+            overflow: hidden;
+            /* background-color: rgb(24, 23, 23); */
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            padding-left: 0;
+            overflow: hidden;
+            height: 100vh;
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container-item {
+            margin: auto;
+        }
+
+        .logo {
+            margin: 0 0 3rem 0;
+        }
+
+        .main {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main__details {
+            flex-basis: 40%;
+            margin-top: 50px;
+            margin: 0 auto;
+        }
+
+        .main__heading {
+            font-size: 1em;
+
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            background-image: url("assets/code-header-bg.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .main__heading-colored {
+            color: var(--main-color);
+
+        }
+
+        .main__paragraph {
+            color: var(--main-color);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .main__img-container {
+            flex-basis: 75%;
+            align-self: center;
+            flex-shrink: 5;
+            background-color: black;
+        }
+
+        .main__img {
+            width: 100%;
+        }
+
+        .main__details-img {
+            /* width: calc(100% + 60px); */
+            margin-left: -30px;
+            margin-bottom: 50px;
+            display: none;
+        }
+
+        hr {
+            margin: 1em 0;
+            color: #ECCF94;
+            background-color: #ECCF94;
+            border-color: #ECCF94;
+        }
+
+        a {
+            color: #ECCF94;
+            text-decoration: none;
+            border-bottom: 0.1em solid;
+        }
+
+        @media (max-width: 500px) {}
+
+        @media (max-width: 1100px) {
+            .container {
+                padding-left: 0;
+            }
+
+            body {
+                /* overflow: scroll; */
+                overflow: hidden;
+            }
+
+            .main {
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            .main__details {
+                margin: 0 auto;
+            }
+
+            .main__img-container {
+                display: none;
+            }
+        }
     </style>
+
 </head>
 
 <body>
 
-    <div class="socials" style="position: initial; margin: 0; bottom:0; color: #C69D6A; text-align: center;">
-        <a target="_blank" href="/articles"><span
-                style="transform: skewX(10deg); margin: 0.5em; display: inline-block;"><i
-                    class="fas fa-newspaper"></i></span></a>
-        <a target="_blank" href="https://www.youtube.com/channel/UCU2b64yMjeDUDBynQGHGg1g"><span
-                style="transform: skewX(-5deg); margin: 0.5em; display: inline-block;"><i
-                    class="fab fa-youtube"></i></span></a>
-        <a target="_blank" href="https://t.me/manhajiaat"><span
-                style="transform: skewX(-5deg); margin: 0.5em; display: inline-block;"><i
-                    class="fab fa-telegram"></i></span></a>
-        <a target="_blank" href="https://twitter.com/Manhajiaat"><span
-                style="transform: skewX(-5deg); margin: 0.5em; display: inline-block;"><i
-                    class="fab fa-twitter-square"></i></span></a>
+    <style>
+        .socials {
+            padding: 1em;
+            position: initial;
+            bottom: 0;
+            color: #E1EBCA;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .wide-input {
+            width: 67%;
+            height: 30px;
+            background-color: #19220a;
+            border: 1px solid #3c7900;
+            color: white;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            align-self: center;
+            padding: 1em;
+            margin: 0 1em;
+            border-radius: 0.5rem;
+        }
+    </style>
+
+    <div class="socials">
+        <div>
+            <img height="50px" src="assets/reset.png" alt="reset button">
+        </div>
+
+
+        <div class="wide-input">
+            <span>Your Score</span>
+            <span>24240</span>
+        </div>
+
+
+        <div>
+            <img height="40px" src="assets/fr-lang.png" alt="lang">
+        </div>
     </div>
+
+
+    <!-- CODE Section -->
+    <style>
+        .main__heading {
+            font-size: 0.6em;
+
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            background-image: url(assets/code-header-bg.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 60px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            scale: 1.34;
+        }
+
+        .main__heading h1 {
+            scale: 0.8;
+            letter-spacing: 0.2rem;
+            font-size: 2.2em;
+            color: #fdfcfc;
+        }
+
+        .code-inputs {
+            margin-top: 3em;
+        }
+
+        .subscribe-form {
+            background-image: url("./assets/check-btn-bg.png");
+            background-position: center;
+            background-size: cover;
+            scale: 0.5;
+        }
+
+        .subscribe-form input[type=submit] {
+            font-size: 2em;
+            width: 425px;
+            height: 110px;
+            color: #E1EBCA;
+            background-color: transparent;
+            border: 0;
+        }
+    </style>
+    <div class="container">
+        <div class="container-item">
+            <main class="main">
+                <div class="main__details" style="width: 100vw;">
+                    <div class="main__heading">
+                        <h1>
+                            What is the code ?
+                        </h1>
+                    </div>
+
+                    <form method="POST" action="/signup/verify" class="digit-group" data-group-name="digits"
+                        data-autosubmit="false" autocomplete="off"
+                        style="width: max-content; margin: 0 auto; scale: 1.2;">
+
+                        <div class="code-inputs">
+                            <input class="input" type="text" id="digit_1" name="digit_1" data-next="digit_2" />
+                            <input class="input" type="text" id="digit_2" name="digit_2" data-next="digit_3"
+                                data-previous="digit_1" />
+                            <input class="input" type="text" id="digit_3" name="digit_3" data-next="digit_4"
+                                data-previous="digit_2" />
+
+                            <input class="input" type="text" id="digit_4" name="digit_4" data-next="digit_5"
+                                data-previous="digit_3" />
+                            <input class="input" type="text" id="digit_5" name="digit_5" data-next="digit_6"
+                                data-previous="digit_4" />
+                        </div>
+
+                        <div class="subscribe-form">
+                            <input name="submit" type="submit" value="Check" />
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </main>
+
+
+            <!-- ===================== Hints ======================= -->
+            <style>
+                .hint-parent {
+                    width: 100%;
+                    height: 70px;
+                    overflow: hidden;
+                    margin: 1em auto;
+                    display: flex;
+                    border: 1px solid #1F4008;
+                    justify-content: space-between;
+                }
+
+                .hint-parent .code-cont {
+                    align-self: center;
+                    display: flex;
+                }
+
+                .hint-parent .code-cont .code {
+                    width: calc(130px / 3);
+                    height: calc(169px / 3);
+                    background-color: transparent;
+                    background-image: url(assets/code-num-bg.png);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    border: 0;
+                    line-height: 56px;
+                    font-size: 1.6em;
+                    font-family: "Bangers", serif;
+                    color: white;
+                    margin: 0 2px;
+                    align-self: center;
+                    scale: 0.9;
+                }
+
+                .four-words-width-parag {
+                    font-size: 0.8em;
+                    background-image: url(./assets/4-word-parag-bg.png);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-color: transparent;
+                    align-items: center;
+                    overflow: auto;
+                    padding-left: 4em;
+                    display: flex;
+                    background-position: center;
+                    background-position-x: 7px;
+                }
+
+                /* Hide WebKit scrollbars (Chrome, Safari, etc.) */
+                .four-words-width-parag::-webkit-scrollbar {
+                    width: 0.1px;
+                    background: transparent;
+                }
+
+                .four-words-width-parag::-webkit-scrollbar-thumb {
+                    background: transparent;
+                }
+            </style>
+
+
+            <!-- Hint 1 -->
+            <div class="hint-parent">
+
+                <div class="code-cont">
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                </div>
+
+                <div class="four-words-width-parag">
+                    <p style="text-align: left;">
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                    </p>
+                </div>
+            </div>
+            <!-- Hint 2 -->
+            <div class="hint-parent">
+
+                <div class="code-cont">
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                </div>
+
+                <div class="four-words-width-parag">
+                    <p style="text-align: left;">
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                    </p>
+                </div>
+            </div>
+            <!-- Hint 3 -->
+            <div class="hint-parent">
+
+                <div class="code-cont">
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                </div>
+
+                <div class="four-words-width-parag">
+                    <p style="text-align: left;">
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                    </p>
+                </div>
+            </div>
+            <!-- Hint 4 -->
+            <div class="hint-parent">
+
+                <div class="code-cont">
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                    <span class="code">3</span>
+                </div>
+
+                <div class="four-words-width-parag">
+                    <p style="text-align: left;">
+                        Two Numbers are Correct
+                        but wrongly placed.
+                        Two Numbers are Correct
+                        but wrongly placed.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- 4 words width parags -->
+    <script>
+        // Get the paragraph element
+        const parags = document.getElementsByClassName("four-words-width-parag");
+
+        Object.entries(parags).forEach(([key, value]) => {
+            let parag = value.children[0];
+
+            // Define the maximum number of characters per line
+            const maxCharsPerLine = 75;
+
+            // Split the text content into words
+            const words = parag.textContent.split(' ');
+
+            // Initialize variables to keep track of the current line and current line length
+            let currentLine = '';
+            let currentLineLength = 0;
+            parag.innerHTML = '';
+
+            // Iterate through the words and construct lines
+            words.forEach(word => {
+                if (currentLineLength + word.length <= maxCharsPerLine) {
+                    // Add the word to the current line
+                    currentLine += word + ' ';
+                    currentLineLength += word.length + 1; // Add 1 for the space
+                } else {
+                    // Add a line break, and start a new line
+                    parag.innerHTML += currentLine + '<br>';
+                    currentLine = word + ' ';
+                    currentLineLength = word.length + 1;
+                }
+            });
+
+            // Add any remaining content
+            parag.innerHTML += currentLine;
+        })
+
+    </script>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+    <script>
+        $('.digit-group').find('input').each(function () {
+            $(this).attr('maxlength', 1);
+            $(this).on('keyup', function (e) {
+                var parent = $($(this).parent());
+
+                if (e.keyCode === 8 || e.keyCode === 37) {
+                    var prev = parent.find('input#' + $(this).data('previous'));
+
+                    if (prev.length) {
+                        $(prev).select();
+                    }
+                } else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
+                    var next = parent.find('input#' + $(this).data('next'));
+
+                    if (next.length) {
+                        $(next).select();
+                    } else {
+                        if (parent.data('autosubmit')) {
+                            parent.submit();
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+
 
     <div style="width: 100%; height: 50%;
     margin: 0 auto;
@@ -105,30 +609,8 @@
     opacity: 0.75;
     z-index: 1;
     overflow: hidden;
-    background: linear-gradient(0deg, rgba(31, 26, 27, 0), #272021);
+    background: linear-gradient(0deg, rgba(31, 26, 27, 0), #1F4008);
             background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;">
-    </div>
-
-    <div style="width: 13em; height: 10em;
-    margin: 0 auto;
-    position: relative;
-    z-index: 3;
-            background: url('assets/logo02.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;">
-    </div>
-
-    <div style="width: 90%; height: 600px;
-    margin: 0 auto;
-    opacity: 0.30;
-    z-index: 2;
-    position: relative;
-    top: -4.5em;
-            background: url('assets/banner04-vertical.png');
-            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;">
     </div>
