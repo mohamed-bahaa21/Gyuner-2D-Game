@@ -332,7 +332,7 @@
         }
 
         .code-inputs {
-            margin-top: 3em;
+            margin-top: 0em;
         }
 
         .subscribe-form {
@@ -361,21 +361,60 @@
                         </h1>
                     </div>
 
+                    <style>
+                        .arrow-increase,
+                        .arrow-decrease {
+                            margin-left: 1rem;
+                        }
+
+                        .arrow-increase img,
+                        .arrow-decrease img {
+                            width: 33px;
+                            margin-right: 0.9em;
+                        }
+                    </style>
+
                     <form method="POST" action="/signup/verify" class="digit-group" data-group-name="digits"
                         data-autosubmit="false" autocomplete="off"
                         style="width: max-content; margin: 0 auto; scale: 1.2;">
 
+                        <div class="arrow-increase">
+                            <img src="./assets/code-arrow-up.png" onclick="increase_code(1)" id="increase-1" alt="">
+                            <img src="./assets/code-arrow-up.png" onclick="increase_code(2)" id="increase-2" alt="">
+                            <img src="./assets/code-arrow-up.png" onclick="increase_code(3)" id="increase-3" alt="">
+                            <img src="./assets/code-arrow-up.png" onclick="increase_code(4)" id="increase-4" alt="">
+                            <img src="./assets/code-arrow-up.png" onclick="increase_code(5)" id="increase-5" alt="">
+                        </div>
+
+                        <script>
+                            
+                            function increase_code(index) {
+                                let old_value = Number(document.getElementById(`digit_${index}`).value);
+                                document.getElementById(`digit_${index}`).value = old_value + 1;
+                            }
+
+                        </script>
+
                         <div class="code-inputs">
-                            <input class="input" type="text" id="digit_1" name="digit_1" data-next="digit_2" />
-                            <input class="input" type="text" id="digit_2" name="digit_2" data-next="digit_3"
+                            <input class="input" type="number" id="digit_1" name="digit_1" data-next="digit_2" />
+
+                            <input class="input" type="number" id="digit_2" name="digit_2" data-next="digit_3"
                                 data-previous="digit_1" />
-                            <input class="input" type="text" id="digit_3" name="digit_3" data-next="digit_4"
+                            <input class="input" type="number" id="digit_3" name="digit_3" data-next="digit_4"
                                 data-previous="digit_2" />
 
-                            <input class="input" type="text" id="digit_4" name="digit_4" data-next="digit_5"
+                            <input class="input" type="number" id="digit_4" name="digit_4" data-next="digit_5"
                                 data-previous="digit_3" />
-                            <input class="input" type="text" id="digit_5" name="digit_5" data-next="digit_6"
+                            <input class="input" type="number" id="digit_5" name="digit_5" data-next="digit_6"
                                 data-previous="digit_4" />
+                        </div>
+
+                        <div class="arrow-decrease">
+                            <img src="./assets/code-arrow-down.png" id="decrease-1" alt="">
+                            <img src="./assets/code-arrow-down.png" id="decrease-2" alt="">
+                            <img src="./assets/code-arrow-down.png" id="decrease-3" alt="">
+                            <img src="./assets/code-arrow-down.png" id="decrease-4" alt="">
+                            <img src="./assets/code-arrow-down.png" id="decrease-5" alt="">
                         </div>
 
                         <div class="subscribe-form">
