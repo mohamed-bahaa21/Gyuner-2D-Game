@@ -301,13 +301,39 @@
         <script>
             let score = document.getElementById("score");
             score.innerHTML = 0;
-
         </script>
 
 
         <div>
             <img height="40px" src="assets/fr-lang.png" alt="lang">
         </div>
+    </div>
+
+    <!-- WRONG Banner -->
+    <style>
+        #wrong-banner {
+            width: 415px;
+            position: absolute;
+            
+            background-color: #090b06b7;
+            height: 100vh;
+            
+            z-index: -99;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .visible {
+            opacity: 1 !important;
+            z-index: 99 !important;
+        }
+
+        #wrong-banner img {
+            width: 100%;
+        }
+    </style>
+    <div id="wrong-banner" class="" style="">
+        <img src="./assets/wrong-banner-short.png" alt="">
     </div>
 
 
@@ -463,7 +489,7 @@
                                 localStorage.setItem('currentCode', 12345);
                                 currentCode = localStorage.getItem('currentCode');
                             }
-                            generateRandomNumber()
+                            reset()
                             console.log(currentCode);
 
                             function checkCodeAnswer() {
@@ -479,18 +505,40 @@
 
                                 let correctAnswer = Number(localStorage.getItem('currentCode')) == Number(finalAnswer);
                                 if (correctAnswer) {
-                                    win();
+                                    correct();
                                 } else {
-                                    loss();
+                                    wrong();
                                 }
                             }
 
-                            function win() {
-                                console.log("WIN");
+                            function correct() {
+                                console.log("CORRECT");
+                                score.innerHTML = Number(score.innerHTML) + 115;
+                                reset();
                             }
 
-                            function loss() {
-                                console.log("LOSS");
+                            function wrong() {
+                                console.log("WRONG");
+                                let timer = 0;
+
+                                document.getElementById("wrong-banner").classList.toggle("visible");
+
+                                for (let i = 0; i < 50000; i++) {
+                                    console.log(i);
+                                    if (i == 40800) {
+                                        document.getElementById("wrong-banner").classList.toggle("visible");
+                                    }
+                                }
+                            }
+
+                            function reset() {
+                                generateRandomNumber();
+                                document.getElementById(`digit_1`).value = 0;
+                                document.getElementById(`digit_2`).value = 0;
+                                document.getElementById(`digit_3`).value = 0;
+                                document.getElementById(`digit_4`).value = 0;
+                                document.getElementById(`digit_5`).value = 0;
+                                document.getElementById("wrong-banner").style.display = "block";
                             }
                         </script>
 
