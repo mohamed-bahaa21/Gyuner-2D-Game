@@ -386,15 +386,6 @@
                             <img src="./assets/code-arrow-up.png" onclick="increase_code(5)" id="increase-5" alt="">
                         </div>
 
-                        <script>
-                            
-                            function increase_code(index) {
-                                let old_value = Number(document.getElementById(`digit_${index}`).value);
-                                document.getElementById(`digit_${index}`).value = old_value + 1;
-                            }
-
-                        </script>
-
                         <div class="code-inputs">
                             <input class="input" type="number" id="digit_1" name="digit_1" data-next="digit_2" />
 
@@ -410,12 +401,27 @@
                         </div>
 
                         <div class="arrow-decrease">
-                            <img src="./assets/code-arrow-down.png" id="decrease-1" alt="">
-                            <img src="./assets/code-arrow-down.png" id="decrease-2" alt="">
-                            <img src="./assets/code-arrow-down.png" id="decrease-3" alt="">
-                            <img src="./assets/code-arrow-down.png" id="decrease-4" alt="">
-                            <img src="./assets/code-arrow-down.png" id="decrease-5" alt="">
+                            <img src="./assets/code-arrow-down.png" onclick="decrease_code(1)" id="decrease-1" alt="">
+                            <img src="./assets/code-arrow-down.png" onclick="decrease_code(2)" id="decrease-2" alt="">
+                            <img src="./assets/code-arrow-down.png" onclick="decrease_code(3)" id="decrease-3" alt="">
+                            <img src="./assets/code-arrow-down.png" onclick="decrease_code(4)" id="decrease-4" alt="">
+                            <img src="./assets/code-arrow-down.png" onclick="decrease_code(5)" id="decrease-5" alt="">
                         </div>
+
+                        <script>
+
+                            function increase_code(index) {
+                                let old_value = Number(document.getElementById(`digit_${index}`).value);
+                                document.getElementById(`digit_${index}`).value = old_value + 1;
+                                
+                            }
+
+                            function decrease_code(index) {
+                                let old_value = Number(document.getElementById(`digit_${index}`).value);
+                                document.getElementById(`digit_${index}`).value = old_value - 1;
+                            }
+
+                        </script>
 
                         <div class="subscribe-form">
                             <input name="submit" type="submit" value="Check" />
