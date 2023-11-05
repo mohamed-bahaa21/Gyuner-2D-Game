@@ -304,9 +304,55 @@
         </script>
 
 
-        <div>
-            <img height="40px" src="assets/fr-lang.png" alt="lang">
+
+        <style>
+            .custom-dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .selected-option {
+                cursor: pointer;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+
+            .selected-option img:hover+.dropdown-content,
+            .dropdown-content:hover {
+                display: block;
+            }
+        </style>
+        <div class="custom-dropdown">
+            <div class="selected-option">
+                <img height="40px" src="assets/fr-lang.png" alt="lang">
+            </div>
+            <div class="dropdown-content">
+                <img height="30px" src="assets/en-lang-small.png" alt="lang">
+                <img height="30px" src="assets/fr-lang-small.png" alt="lang">
+                <img height="30px" src="assets/ru-lang-small.png" alt="lang">
+            </div>
         </div>
+
+        <script>
+            document.querySelector('.selected-option').addEventListener('click', function () {
+                const dropdownContent = document.querySelector('.dropdown-content');
+                dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+            });
+
+            const dropdownImages = document.querySelectorAll('.dropdown-content img');
+            dropdownImages.forEach(img => {
+                img.addEventListener('click', function () {
+                    const selectedOption = document.querySelector('.selected-option img');
+                    selectedOption.src = this.src;
+                });
+            });
+        </script>
+
     </div>
 
     <!-- WRONG Banner -->
@@ -314,10 +360,10 @@
         #wrong-banner {
             width: 415px;
             position: absolute;
-            
+
             background-color: #090b06b7;
             height: 100vh;
-            
+
             z-index: -99;
             opacity: 0;
             transition: opacity 0.3s ease;
