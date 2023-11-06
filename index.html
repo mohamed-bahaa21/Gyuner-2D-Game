@@ -50,6 +50,7 @@
         ::-webkit-scrollbar-thumb {
             background: #1A2809;
         }
+
         ::-webkit-inner-spin-button,
         ::-webkit-outer-spin-button {
             -webkit-appearance: none !important;
@@ -600,16 +601,10 @@
                                 console.log("WRONG");
                                 let timer = 0;
 
-                                document.getElementById("wrong-banner").style.zIndex = '99';
-                                document.getElementById("wrong-banner").style.opacity = '1';
-
-                                for (let i = 0; i < 50000; i++) {
-                                    console.log(i);
-                                    if (i == 40800) {
-                                        document.getElementById("wrong-banner").style.zIndex = -99;
-                                        document.getElementById("wrong-banner").style.opacity = 0;
-                                    }
-                                }
+                                document.getElementById("wrong-banner").classList.add("visible");
+                                setInterval(() => {
+                                    document.getElementById("wrong-banner").classList.remove("visible");
+                                }, 1000);
                             }
 
                             function reset() {
