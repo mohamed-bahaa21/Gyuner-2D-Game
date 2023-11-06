@@ -316,6 +316,7 @@
             }
 
             .dropdown-content {
+                z-index: 99;
                 display: none;
                 position: absolute;
                 top: 100%;
@@ -567,12 +568,14 @@
                                 console.log("WRONG");
                                 let timer = 0;
 
-                                document.getElementById("wrong-banner").classList.toggle("visible");
+                                document.getElementById("wrong-banner").style.zIndex = '99';
+                                document.getElementById("wrong-banner").style.opacity = '1';
 
                                 for (let i = 0; i < 50000; i++) {
                                     console.log(i);
                                     if (i == 40800) {
-                                        document.getElementById("wrong-banner").classList.toggle("visible");
+                                        document.getElementById("wrong-banner").style.zIndex = -99;
+                                document.getElementById("wrong-banner").style.opacity = 0;
                                     }
                                 }
                             }
