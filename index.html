@@ -273,6 +273,9 @@
 
 <body>
 
+    <!-- game Logic -->
+
+
     <style>
         .socials {
             padding: 1em;
@@ -324,10 +327,6 @@
                 <span id="score">24240</span>
             </div>
         </div>
-        <script>
-            let score = document.getElementById("score");
-            score.innerHTML = 0;
-        </script>
 
 
 
@@ -372,22 +371,15 @@
             </div>
         </div>
 
-        <script>
-            document.querySelector('.selected-option').addEventListener('click', function () {
-                const dropdownContent = document.querySelector('.dropdown-content');
-                dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-            });
 
-            const dropdownImages = document.querySelectorAll('.dropdown-content img');
-            dropdownImages.forEach(img => {
-                img.addEventListener('click', function () {
-                    const selectedOption = document.querySelector('.selected-option img');
-                    selectedOption.src = this.src;
-                });
-            });
-        </script>
 
     </div>
+
+    <div>
+        Level: <span id="level">0</span>
+    </div>
+
+
 
     <!-- WRONG Banner -->
     <style>
@@ -500,7 +492,7 @@
                         data-autosubmit="false" autocomplete="off"
                         style="width: max-content; margin: 0 auto; scale: 1.2;">
 
-                        <div class="arrow-increase">
+                        <div class="arrow-increase" id="arrow-increase">
                             <img src="./assets/code-arrow-up.png" onclick="increase_code(1)" id="increase-1" alt="">
                             <img src="./assets/code-arrow-up.png" onclick="increase_code(2)" id="increase-2" alt="">
                             <img src="./assets/code-arrow-up.png" onclick="increase_code(3)" id="increase-3" alt="">
@@ -508,7 +500,7 @@
                             <img src="./assets/code-arrow-up.png" onclick="increase_code(5)" id="increase-5" alt="">
                         </div>
 
-                        <div class="code-inputs">
+                        <div class="code-inputs" id="code-inputs">
                             <input class="input" type="number" id="digit_1" name="digit_1" data-next="digit_2"
                                 onchange="checkCodeValue(1)" onvolumechange="checkCodeValue(1)"
                                 oninput="checkCodeValue(1)" onforminput="checkCodeValue(1)" />
@@ -530,7 +522,7 @@
                                 oninput="checkCodeValue(5)" onforminput="checkCodeValue(5)" />
                         </div>
 
-                        <div class="arrow-decrease">
+                        <div class="arrow-decrease" id="arrow-decrease">
                             <img src="./assets/code-arrow-down.png" onclick="decrease_code(1)" id="decrease-1" alt="">
                             <img src="./assets/code-arrow-down.png" onclick="decrease_code(2)" id="decrease-2" alt="">
                             <img src="./assets/code-arrow-down.png" onclick="decrease_code(3)" id="decrease-3" alt="">
@@ -538,101 +530,13 @@
                             <img src="./assets/code-arrow-down.png" onclick="decrease_code(5)" id="decrease-5" alt="">
                         </div>
 
-                        <script>
 
-                            function increase_code(index) {
-                                let old_value = Number(document.getElementById(`digit_${index}`).value);
-                                document.getElementById(`digit_${index}`).value = old_value + 1;
-                                if (document.getElementById(`digit_${index}`).value >= 9) document.getElementById(`digit_${index}`).value = 9;
-                            }
-
-                            function decrease_code(index) {
-                                let old_value = Number(document.getElementById(`digit_${index}`).value);
-                                document.getElementById(`digit_${index}`).value = old_value - 1;
-                                if (document.getElementById(`digit_${index}`).value <= 0) document.getElementById(`digit_${index}`).value = 0;
-                            }
-
-                            function checkCodeValue(index) {
-                                if (document.getElementById(`digit_${index}`).value.length > 1) document.getElementById(`digit_${index}`).value = document.getElementById(`digit_${index}`).value.at(1);
-                                if (document.getElementById(`digit_${index}`).value >= 9) document.getElementById(`digit_${index}`).value = 9;
-                                if (document.getElementById(`digit_${index}`).value <= 0) document.getElementById(`digit_${index}`).value = 0;
-                            }
-
-                        </script>
 
                         <div class="subscribe-form">
                             <p id="check-btn" value="Check" onclick="checkCodeAnswer()">Check</p>
                         </div>
 
-                        <script>
-                            reset()
 
-
-                            function generateRandomNumber() {
-                                // Generate a random number between 10000 and 99999
-                                const randomNumber = Math.floor(Math.random() * 90000) + 10000;
-                                // Convert the number to a string
-                                const randomString = randomNumber.toString();
-                                return randomString;
-                            }
-
-                            function checkCodeAnswer() {
-                                let digit_1 = document.getElementById(`digit_1`).value;
-                                let digit_2 = document.getElementById(`digit_2`).value;
-                                let digit_3 = document.getElementById(`digit_3`).value;
-                                let digit_4 = document.getElementById(`digit_4`).value;
-                                let digit_5 = document.getElementById(`digit_5`).value;
-
-                                let finalAnswer = digit_1 + digit_2 + digit_3 + digit_4 + digit_5;
-                                console.log(finalAnswer)
-                                console.log(typeof finalAnswer)
-
-                                let correctAnswer = Number(localStorage.getItem('currentCode')) == Number(finalAnswer);
-                                if (correctAnswer) {
-                                    correct();
-                                } else {
-                                    wrong();
-                                }
-                            }
-
-                            function correct() {
-                                console.log("CORRECT");
-                                score.innerHTML = Number(score.innerHTML) + 115;
-                                reset();
-                            }
-
-                            function wrong() {
-                                console.log("WRONG");
-                                let timer = 0;
-
-                                document.getElementById("wrong-banner").classList.add("visible");
-                                setInterval(() => {
-                                    document.getElementById("wrong-banner").classList.remove("visible");
-                                }, 1000);
-
-                                console.log(currentCode);
-                            }
-
-                            function reset() {
-                                generateRandomNumber();
-                                document.getElementById(`digit_1`).value = 0;
-                                document.getElementById(`digit_2`).value = 0;
-                                document.getElementById(`digit_3`).value = 0;
-                                document.getElementById(`digit_4`).value = 0;
-                                document.getElementById(`digit_5`).value = 0;
-                                document.getElementById("wrong-banner").style.display = "block";
-
-                                const random5CharNumber = generateRandomNumber();
-                                localStorage.setItem('currentCode', random5CharNumber);
-                                currentCode = localStorage.getItem('currentCode');
-                                console.log(currentCode);
-                            }
-
-                            // // Get the reset button element by its ID
-                            // const resetButton = document.getElementById('reset');
-                            // // Add a click event listener to the reset button
-                            // resetButton.addEventListener('click', reset());
-                        </script>
 
                     </form>
 
@@ -684,7 +588,8 @@
                     background-color: transparent;
                     overflow: auto;
                     padding-left: 4em;
-                    padding-top: 4em;
+                    padding-top: 1em;
+                    padding-bottom: 1em;
                     display: flex;
                     background-position: center;
                     background-position-x: 7px;
@@ -702,96 +607,98 @@
             </style>
 
 
-            <!-- Hint 1 -->
-            <div class="hint-parent">
+            <div id="hints-container">
+                <!-- Hint 1 -->
+                <div class="hint-parent">
 
-                <div class="code-cont">
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                    <span class="code">3</span>
+                    <div class="code-cont">
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                    </div>
+
+                    <div class="four-words-width-parag">
+                        <p style="text-align: left;">
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                        </p>
+                    </div>
                 </div>
+                <!-- Hint 2 -->
+                <div class="hint-parent">
 
-                <div class="four-words-width-parag">
-                    <p style="text-align: left;">
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                    </p>
+                    <div class="code-cont">
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                    </div>
+
+                    <div class="four-words-width-parag">
+                        <p style="text-align: left;">
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <!-- Hint 2 -->
-            <div class="hint-parent">
+                <!-- Hint 3 -->
+                <div class="hint-parent">
 
-                <div class="code-cont">
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                    <span class="code">3</span>
+                    <div class="code-cont">
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                    </div>
+
+                    <div class="four-words-width-parag">
+                        <p style="text-align: left;">
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                        </p>
+                    </div>
                 </div>
+                <!-- Hint 4 -->
+                <div class="hint-parent">
 
-                <div class="four-words-width-parag">
-                    <p style="text-align: left;">
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                    </p>
-                </div>
-            </div>
-            <!-- Hint 3 -->
-            <div class="hint-parent">
+                    <div class="code-cont">
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                        <span class="code">3</span>
+                    </div>
 
-                <div class="code-cont">
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                </div>
-
-                <div class="four-words-width-parag">
-                    <p style="text-align: left;">
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                    </p>
-                </div>
-            </div>
-            <!-- Hint 4 -->
-            <div class="hint-parent">
-
-                <div class="code-cont">
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                    <span class="code">3</span>
-                </div>
-
-                <div class="four-words-width-parag">
-                    <p style="text-align: left;">
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                        Two Numbers are Correct
-                        but wrongly placed.
-                    </p>
+                    <div class="four-words-width-parag">
+                        <p style="text-align: left;">
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                            Two Numbers are Correct
+                            but wrongly placed.
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -801,47 +708,6 @@
 
 
     <!-- 4 words width parags -->
-    <script>
-        // Get the paragraph element
-        const parags = document.getElementsByClassName("four-words-width-parag");
-
-        Object.entries(parags).forEach(([key, value]) => {
-            let parag = value.children[0];
-
-            // Define the maximum number of characters per line
-            const maxCharsPerLine = 75;
-
-            // Split the text content into words
-            const words = parag.textContent.split(' ');
-
-            // Initialize variables to keep track of the current line and current line length
-            let currentLine = '';
-            let currentLineLength = 0;
-            parag.innerHTML = '';
-
-            // Iterate through the words and construct lines
-            words.forEach(word => {
-                if (currentLineLength + word.length <= maxCharsPerLine) {
-                    // Add the word to the current line
-                    currentLine += word + ' ';
-                    currentLineLength += word.length + 1; // Add 1 for the space
-                } else {
-                    // Add a line break, and start a new line
-                    parag.innerHTML += currentLine + '<br>';
-                    currentLine = word + ' ';
-                    currentLineLength = word.length + 1;
-                }
-            });
-
-            // Add any remaining content
-            parag.innerHTML += currentLine;
-        })
-
-    </script>
-
-
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
     <script>
         $('.digit-group').find('input').each(function () {
@@ -883,6 +749,386 @@
             background-repeat: no-repeat;
             background-position: center;">
     </div>
+
+
+
+    <script>
+
+        function fetchLevel(level) {
+            const url = `https://www.crack-the-code.com/code/${level}?time=${Date.now()}`; // Replace with the URL you want to fetch data from
+            fetch(url, {
+                method: 'GET', // You can specify the HTTP method here (e.g., GET, POST, etc.)
+                mode: 'cors', // This indicates that it's a cross-origin request
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json(); // Assuming the response is in JSON format
+                })
+                .then((data) => {
+                    console.log(data);
+                    // Process the data
+                    localStorage.setItem("data", data);
+                    const guessCodeArr = data.guessCode;
+                    const numberToGuess = data.numberToGuess;
+                    const hints = data.hints;
+
+                    // Convert guessCode to a string
+                    const guessCode = guessCodeToString(guessCodeArr);
+                    localStorage.setItem("guessCode", guessCode);
+                    localStorage.setItem('currentCode', guessCode);
+
+                    currentCode = localStorage.getItem("currentCode");
+                    console.log("guessCode: ", guessCode); // Output: "021"
+                    console.log("currentCode: ", currentCode); // Output: "021"
+
+                    // Update the number of arrows and code input fields
+                    const arrowIncreaseCount = numberToGuess;
+                    const arrowDecreaseCount = numberToGuess;
+                    updateArrows(arrowIncreaseCount, arrowDecreaseCount);
+                    createHintElements(hints);
+                    createInputElements(guessCode);
+
+                    // Function to create input elements
+                    function createInputElements(guessCode) {
+                        const codeInputsContainer = document.getElementById("code-inputs");
+                        codeInputsContainer.innerHTML = "";
+
+                        for (let i = 1; i <= guessCode.length; i++) {
+                            const input = document.createElement("input");
+                            input.className = "input";
+                            input.type = "number";
+                            input.id = `digit_${i}`;
+                            input.name = `digit_${i}`;
+
+                            // Set data attributes for the next and previous inputs (if needed)
+                            if (i < guessCode.length) {
+                                input.setAttribute("data-next", `digit_${i + 1}`);
+                            }
+                            if (i > 1) {
+                                input.setAttribute("data-previous", `digit_${i - 1}`);
+                            }
+
+                            // Add event listeners for input validation
+                            input.onchange = () => checkCodeValue(i);
+                            input.oninput = () => checkCodeValue(i);
+
+                            codeInputsContainer.appendChild(input);
+                        }
+                    }
+
+                    function addSpacesBeforeCapitals(str) { return str.replace(/([A-Z])/g, ' $1'); }
+
+                    // Function to update the number of arrows
+                    function updateArrows(increaseCount, decreaseCount) {
+                        // Clear existing arrow elements
+                        const arrowIncreaseContainer = document.querySelector('.arrow-increase');
+                        const arrowDecreaseContainer = document.querySelector('.arrow-decrease');
+
+                        arrowIncreaseContainer.innerHTML = '';
+                        arrowDecreaseContainer.innerHTML = '';
+
+                        // Add increase arrows
+                        for (let i = 1; i <= increaseCount; i++) {
+                            const arrowImg = document.createElement("img");
+                            arrowImg.src = "./assets/code-arrow-up.png";
+                            arrowImg.alt = `Increase ${i}`;
+                            arrowImg.onclick = () => increase_code(i);
+                            arrowIncreaseContainer.appendChild(arrowImg);
+                        }
+
+                        // Add decrease arrows
+                        for (let i = 1; i <= decreaseCount; i++) {
+                            const arrowImg = document.createElement("img");
+                            arrowImg.src = "./assets/code-arrow-down.png";
+                            arrowImg.alt = `Decrease ${i}`;
+                            arrowImg.onclick = () => decrease_code(i);
+                            arrowDecreaseContainer.appendChild(arrowImg);
+                        }
+                    }
+
+                    // Function to create hint elements based on the hints data
+                    function createHintElements(hints) {
+                        const hintsContainer = document.getElementById("hints-container");
+                        hintsContainer.innerHTML = "";
+
+                        for (const hintKey in hints) {
+                            if (hints.hasOwnProperty(hintKey)) {
+                                const hintValue = hints[hintKey];
+
+                                // <div class="hint-parent">
+                                //     <div class="code-cont">
+                                //         <span class="code">3</span>
+                                //         <span class="code">3</span>
+                                //         <span class="code">3</span>
+                                //         <span class="code">3</span>
+                                //     </div>
+
+                                //     <div class="four-words-width-parag">
+                                //         <p style="text-align: left;">
+                                //             Two Numbers are Correct
+                                //             but wrongly placed.
+                                //             Two Numbers are Correct
+                                //             but wrongly placed.
+                                //         </p>
+                                //     </div>
+                                // </div>
+
+                                // Create a hint element
+                                const hintParent = document.createElement("div");
+                                hintParent.classList.add("hint-parent");
+
+                                // Create code container for hint value
+                                const codeContainer = document.createElement("div");
+                                codeContainer.classList.add("code-cont");
+                                hintValue.forEach(value => {
+                                    const codeSpan = document.createElement("span");
+                                    codeSpan.classList.add("code");
+                                    codeSpan.textContent = value;
+                                    codeContainer.appendChild(codeSpan);
+                                });
+
+                                // Create paragraph for hint key
+                                const fourWordsParag = document.createElement("div");
+                                fourWordsParag.classList.add("four-words-width-parag");
+
+                                const parag = document.createElement("p");
+                                parag.style.textAlign = "left";
+                                const stringWithSpaces = addSpacesBeforeCapitals(hintKey);
+                                parag.textContent = stringWithSpaces;
+                                fourWordsParag.appendChild(parag)
+
+                                hintParent.appendChild(codeContainer);
+                                hintParent.appendChild(fourWordsParag);
+
+                                hintsContainer.appendChild(hintParent);
+                            }
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error("There was a problem with the fetch operation:", error);
+                });
+        }
+    </script>
+    <script>
+        document.querySelector('.selected-option').addEventListener('click', function () {
+            const dropdownContent = document.querySelector('.dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+
+        const dropdownImages = document.querySelectorAll('.dropdown-content img');
+        dropdownImages.forEach(img => {
+            img.addEventListener('click', function () {
+                const selectedOption = document.querySelector('.selected-option img');
+                selectedOption.src = this.src;
+            });
+        });
+    </script>
+    <script>
+
+        function increase_code(index) {
+            let old_value = Number(document.getElementById(`digit_${index}`).value);
+            document.getElementById(`digit_${index}`).value = old_value + 1;
+            if (document.getElementById(`digit_${index}`).value >= 9) document.getElementById(`digit_${index}`).value = 9;
+        }
+
+        function decrease_code(index) {
+            let old_value = Number(document.getElementById(`digit_${index}`).value);
+            document.getElementById(`digit_${index}`).value = old_value - 1;
+            if (document.getElementById(`digit_${index}`).value <= 0) document.getElementById(`digit_${index}`).value = 0;
+        }
+
+        function checkCodeValue(index) {
+            if (document.getElementById(`digit_${index}`).value.length > 1) document.getElementById(`digit_${index}`).value = document.getElementById(`digit_${index}`).value.at(1);
+            if (document.getElementById(`digit_${index}`).value >= 9) document.getElementById(`digit_${index}`).value = 9;
+            if (document.getElementById(`digit_${index}`).value <= 0) document.getElementById(`digit_${index}`).value = 0;
+        }
+
+    </script>
+    <script>
+        let data = localStorage.getItem("data");
+        let guessCode = localStorage.getItem("guessCode");
+        let currentCode = localStorage.getItem("currentCode");
+        // localStorage.setItem("level", 1)
+        // localStorage.setItem("score", 1)
+        let level = localStorage.getItem("level") || 1;
+        let score = localStorage.getItem("score") || 0;
+        console.log("data:", data);
+        console.log("guessCode:", guessCode);
+        console.log("currentCode:", currentCode);
+        console.log("level:", level);
+        console.log("score:", score);
+        setPage();
+
+        function setPage() {
+            let level = localStorage.getItem("level");
+            console.log("heeeeeere level: ", level);
+
+            fetchLevel(level);
+
+            const inputCount = guessCode; // Change this to match the number of input fields you have
+            currentCode = guessCode;
+            console.log("currentCode: ", currentCode);
+            console.log("guessCode: ", guessCode);
+
+            for (let i = 1; i <= inputCount.toString().length; i++) {
+                document.getElementById(`digit_${i}`).value = 0;
+            }
+
+            let scoreEle = document.getElementById("score");
+            scoreEle.innerHTML = localStorage.getItem("score");
+
+            let levelEle = document.getElementById("level");
+            levelEle.innerHTML = localStorage.getItem("level");
+        }
+
+
+        function guessCodeToString(guessCode) {
+            // Create an array of string representations of the numbers
+            const stringArray = guessCode.map(num => num.toString());
+            // Join the string array into a single string
+            const guessString = stringArray.join("");
+            return guessString;
+        }
+
+
+        function generateRandomNumber() {
+            // Generate a random number between 10000 and 99999
+            const randomNumber = Math.floor(Math.random() * 90000) + 10000;
+            // Convert the number to a string
+            const randomString = randomNumber.toString();
+            return randomString;
+        }
+
+
+
+        function correct() {
+            console.log("CORRECT");
+            level = localStorage.getItem("level");
+            score = localStorage.getItem("score");
+
+            localStorage.setItem("score", Number(score) + 115)
+            levelEle = document.getElementById("level")
+            scoreEle = document.getElementById("score")
+            scoreEle.innerHTML = localStorage.getItem("score")
+
+
+            console.log(level);
+            let newLevel = Number(level) + 1
+            localStorage.setItem("level", newLevel);
+            localStorage.setItem("chance", 1);
+            levelEle.innerHTML = localStorage.getItem("level")
+            console.log(localStorage.getItem("level"));
+
+            fetchLevel(localStorage.getItem("level"))
+
+            guessCode = localStorage.getItem("guessCode"); // Change this to match the number of input fields you have
+            console.log("guessCode: ", guessCode);
+
+            let inputCount = guessCode;
+            for (let i = 1; i <= inputCount.toString().length; i++) {
+                document.getElementById(`digit_${i}`).value = 0;
+            }
+        }
+
+        function wrong() {
+            console.log("WRONG");
+            let timer = 0;
+
+            document.getElementById("wrong-banner").classList.add("visible");
+            setInterval(() => {
+                document.getElementById("wrong-banner").classList.remove("visible");
+            }, 1000);
+
+            console.log(currentCode);
+        }
+
+        function checkCodeAnswer() {
+            console.log("level: ", level);
+            guessCode = localStorage.getItem("guessCode");
+            const inputCount = guessCode; // Change this to match the number of input fields you have
+            let finalAnswer = "";
+
+            for (let i = 1; i <= inputCount.toString().length; i++) {
+                const inputElement = document.getElementById(`digit_${i}`).value;
+                finalAnswer += inputElement;
+            }
+
+            console.log("finalAnswer: ", finalAnswer);
+            console.log("currentCode: ", localStorage.getItem('currentCode'));
+
+            console.log(typeof finalAnswer);
+            console.log(typeof localStorage.getItem('currentCode'));
+
+            let correctAnswer = Number(localStorage.getItem('currentCode')) == Number(finalAnswer);
+            if (correctAnswer) {
+                correct();
+            } else {
+                wrong();
+            }
+        }
+
+        function reset() {
+            let chance = localStorage.getItem("chance");
+            if (chance == null) {
+                localStorage.setItem("chance", 1);
+                chance = localStorage.getItem("chance");
+            }
+
+            localStorage.setItem("chance", chance - 1)
+            if (chance == 1) {
+                localStorage.setItem("chance", 0);
+                setPage();
+            }
+
+            if (chance == 0) {
+                localStorage.setItem("chance", 1);
+                localStorage.setItem("score", localStorage.getItem("score") - 115);
+                localStorage.setItem("level", localStorage.getItem("level") - 1);
+                setPage()
+            }
+
+        }
+    </script>
+    <script>
+        // Get the paragraph element
+        const parags = document.getElementsByClassName("four-words-width-parag");
+
+        Object.entries(parags).forEach(([key, value]) => {
+            let parag = value.children[0];
+
+            // Define the maximum number of characters per line
+            const maxCharsPerLine = 75;
+
+            // Split the text content into words
+            const words = parag.textContent.split(' ');
+
+            // Initialize variables to keep track of the current line and current line length
+            let currentLine = '';
+            let currentLineLength = 0;
+            parag.innerHTML = '';
+
+            // Iterate through the words and construct lines
+            words.forEach(word => {
+                if (currentLineLength + word.length <= maxCharsPerLine) {
+                    // Add the word to the current line
+                    currentLine += word + ' ';
+                    currentLineLength += word.length + 1; // Add 1 for the space
+                } else {
+                    // Add a line break, and start a new line
+                    parag.innerHTML += currentLine + '<br>';
+                    currentLine = word + ' ';
+                    currentLineLength = word.length + 1;
+                }
+            });
+
+            // Add any remaining content
+            parag.innerHTML += currentLine;
+        })
+
+    </script>
 
 
 </body>

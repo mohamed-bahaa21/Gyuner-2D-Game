@@ -1,0 +1,9 @@
+{
+    "guessCode": [2, 1],
+    "numberToGuess": 2,
+    "hints": {
+        "nothingCorrect": [4, 9],
+        "oneCorrectAndWellPlaced": [2, 6],
+        "oneCorrectButWronglyPlaced": [7, 2]
+    }
+}
