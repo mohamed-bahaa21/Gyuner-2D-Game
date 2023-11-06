@@ -313,7 +313,7 @@
     </style>
 
     <div class="socials">
-        <div style="display: flex; align-items: center;">
+        <div id="reset" onclick="reset()" style="display: flex; align-items: center;">
             <img height="50px" src="assets/reset.png" alt="reset button">
         </div>
 
@@ -625,8 +625,13 @@
                                 const random5CharNumber = generateRandomNumber();
                                 localStorage.setItem('currentCode', random5CharNumber);
                                 currentCode = localStorage.getItem('currentCode');
-                                console.log(random5CharNumber);
+                                console.log(currentCode);
                             }
+
+                            // // Get the reset button element by its ID
+                            // const resetButton = document.getElementById('reset');
+                            // // Add a click event listener to the reset button
+                            // resetButton.addEventListener('click', reset());
                         </script>
 
                     </form>
