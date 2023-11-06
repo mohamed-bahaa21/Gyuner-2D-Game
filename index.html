@@ -565,12 +565,16 @@
                         </div>
 
                         <script>
-                            function generateRandomNumber() {
-                                localStorage.setItem('currentCode', 12345);
-                                currentCode = localStorage.getItem('currentCode');
-                            }
                             reset()
-                            console.log(currentCode);
+
+
+                            function generateRandomNumber() {
+                                // Generate a random number between 10000 and 99999
+                                const randomNumber = Math.floor(Math.random() * 90000) + 10000;
+                                // Convert the number to a string
+                                const randomString = randomNumber.toString();
+                                return randomString;
+                            }
 
                             function checkCodeAnswer() {
                                 let digit_1 = document.getElementById(`digit_1`).value;
@@ -605,6 +609,8 @@
                                 setInterval(() => {
                                     document.getElementById("wrong-banner").classList.remove("visible");
                                 }, 1000);
+
+                                console.log(currentCode);
                             }
 
                             function reset() {
@@ -615,6 +621,11 @@
                                 document.getElementById(`digit_4`).value = 0;
                                 document.getElementById(`digit_5`).value = 0;
                                 document.getElementById("wrong-banner").style.display = "block";
+
+                                const random5CharNumber = generateRandomNumber();
+                                localStorage.setItem('currentCode', random5CharNumber);
+                                currentCode = localStorage.getItem('currentCode');
+                                console.log(random5CharNumber);
                             }
                         </script>
 
