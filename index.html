@@ -273,8 +273,46 @@
 
 <body>
 
-    <!-- game Logic -->
+    <style>
+        #congrats {
+            background-image: url('assets/congrats-bg.png');
+            background-size: contain;
+            /* width: 415px; */
+            width: 414px !important;
+            height: 100vh;
+            position: absolute;
+            background-repeat: no-repeat;
+            z-index: 999;
+            display: flex;
+            align-items: center;
 
+            z-index: -99;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #congrats div {
+            width: 85%;
+            margin: 0 auto;
+        }
+
+        #congrats div img {
+            margin: 0 auto;
+        }
+    </style>
+
+    <div id="congrats">
+        <div>
+            <img width="100%" src="assets/congrats.png" alt="">
+
+            <img width="100px" src="assets/next.png" onclick="nextLevel()" alt="">
+
+            <div style="display: flex; justify-content: space-between;">
+                <img width="80px" src="assets/rate-us.png" alt="">
+                <img width="80px" src="assets/share.png" alt="">
+            </div>
+        </div>
+    </div>
 
     <style>
         .socials {
@@ -752,8 +790,8 @@
 
 
 
+    <!-- game Logic -->
     <script>
-
         function fetchLevel(level) {
             const url = `https://www.crack-the-code.com/code/${level}?time=${Date.now()}`; // Replace with the URL you want to fetch data from
             fetch(url, {
@@ -1002,10 +1040,7 @@
             return randomString;
         }
 
-
-
-        function correct() {
-            console.log("CORRECT");
+        function nextLevel() {
             level = localStorage.getItem("level");
             score = localStorage.getItem("score");
 
@@ -1031,11 +1066,18 @@
             for (let i = 1; i <= inputCount.toString().length; i++) {
                 document.getElementById(`digit_${i}`).value = 0;
             }
+            
+            document.getElementById("congrats").classList.remove("visible");
+        }
+
+
+        function correct() {
+            console.log("CORRECT");
+            document.getElementById("congrats").classList.add("visible");
         }
 
         function wrong() {
             console.log("WRONG");
-            let timer = 0;
 
             document.getElementById("wrong-banner").classList.add("visible");
             setInterval(() => {
